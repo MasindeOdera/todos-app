@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/todos-app/static/css/main.5f361e03.chunk.css",
+    "main.js": "/todos-app/static/js/main.3e0f83f8.chunk.js",
+    "main.js.map": "/todos-app/static/js/main.3e0f83f8.chunk.js.map",
+    "runtime-main.js": "/todos-app/static/js/runtime-main.b893bb14.js",
+    "runtime-main.js.map": "/todos-app/static/js/runtime-main.b893bb14.js.map",
+    "static/js/2.2b55a3a8.chunk.js": "/todos-app/static/js/2.2b55a3a8.chunk.js",
+    "static/js/2.2b55a3a8.chunk.js.map": "/todos-app/static/js/2.2b55a3a8.chunk.js.map",
+    "index.html": "/todos-app/index.html",
+    "precache-manifest.0520bd5ff4a7be71fffa9ec15a16eca7.js": "/todos-app/precache-manifest.0520bd5ff4a7be71fffa9ec15a16eca7.js",
+    "service-worker.js": "/todos-app/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/todos-app/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.2b55a3a8.chunk.js.LICENSE.txt": "/todos-app/static/js/2.2b55a3a8.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/todos-app/static/media/logo.5d5d9eef.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b893bb14.js",
+    "static/js/2.2b55a3a8.chunk.js",
+    "static/css/main.5f361e03.chunk.css",
+    "static/js/main.3e0f83f8.chunk.js"
+  ]
+}
