@@ -3,6 +3,9 @@ import '../App.css';
 
 function appReducer(state, action) {
     switch (action.type) {
+        case 'clear': {
+            return [];
+        }
         case 'reset': {
             return action.payload;
         }
@@ -67,7 +70,8 @@ function Todos() {
     return (
         <Context.Provider value={dispatch}>
             <h1>Todos App</h1>
-            <button onClick={() => dispatch({ type: 'add' })}>New Todo</button>
+            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>New Todo</button>
+            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Clear Todos</button>
             <br />
             <br />
             <TodosList items={state} />
