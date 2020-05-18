@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useEffect, useRef } from 'react';
+import React, { useReducer, useContext, useEffect, useRef, useState } from 'react';
 import '../App.css';
 
 function appReducer(state, action) {
@@ -33,6 +33,23 @@ function appReducer(state, action) {
                 return item;
             });
         }
+        case 'text': {
+            // return state.map(item => {
+            //     if(item.id) {
+            //         return {
+            //             ...item,
+            //             text: action.payload,
+            //         };
+            //     }
+            //     return item;
+            // });
+            return state.map(item => {
+                return {
+                    ...item,
+                    text: action.payload,
+                };
+            });
+        }
         default: {
             return state;
         }
@@ -58,11 +75,13 @@ function Todos() {
     //This is a custom hook to handle running useEffect once.
     useEffectOnce(() => {
         const raw = localStorage.getItem('data');
+        console.log("After getItem",state);
         dispatch({ type: 'reset', payload: JSON.parse(raw) });
     })
 
     useEffect(() => {
-        localStorage.setItem('data', JSON.stringify(state))
+        localStorage.setItem('data', JSON.stringify(state));
+        console.log("After setItem",state);
     },
     [state]
     );
@@ -85,6 +104,43 @@ function TodosList({ items }) {
 
 function TodoItem({ id, completed, text }){
     const dispatch = useContext(Context);
+    // const [value, setValue] = useState('');
+    // const [content, setContent] = useState('');
+    const [input, setInput] = useState('');
+    console.log(input);
+    
+
+    // const handleValue = (e) => {
+    //     setValue(e.target.value);
+    //     dispatch({ type: 'text', payload: value })
+    //     console.log(value);
+    // }
+
+    // const handleInputChange = (e) => setInput({
+    //     ...input,
+    //     [e.currentTarget.name]: e.currentTarget.value
+    //   })
+
+    // const handleInputChange = (e) => {
+    //     setInput(e.target.value);
+    //     // setInput({...input,[e.currentTarget.name]: e.currentTarget.value});
+    //     dispatch({ type: 'text', payload: input });
+    // }
+
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        // setInput(e.target.value);
+        // setInput({...input,[e.currentTarget.name]: e.currentTarget.value});
+        setInput(e.target.value);
+        dispatch({ type: 'text', payload: input});
+        if (input.length > 0) {
+          dispatch({ type: 'text', payload: input});
+        //   setInput('');
+        }
+      };
+
+      console.log({input})
+
     return (
         <div
             style={{
@@ -96,7 +152,8 @@ function TodoItem({ id, completed, text }){
             }}
         >
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
-        <input type="text" defaultValue={text} />
+    
+        <input type="text" name="value" defaultValue={text} onChange={handleInputChange} />
         <button onClick={() => dispatch({ type: 'delete', payload: id })}>Delete</button>
         </div>
         );
