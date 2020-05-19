@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useEffect, useRef, useState } from 'react';
 import '../App.css';
 
-function appReducer(state, action) {
+function appReducer(state, action, id) {
     switch (action.type) {
         case 'clear': {
             return [];
@@ -34,11 +34,23 @@ function appReducer(state, action) {
             });
         }
         case 'text': {
-            return state.map(item => {
-                return {
-                    ...item,
-                    text: action.payload,
-                };
+            console.log(state);
+            console.log(action.payload);    
+            console.log(Object.getOwnPropertyNames(action.payload));
+            // return state.map(item => {
+            //     return {
+            //         ...item,
+            //         text: action.payload,
+            //     };
+            // });
+            return state.map((item) => {
+                if(item.id === Object.getOwnPropertyNames(action.payload)) {
+                    return {
+                        ...item,
+                        text: ( item.id in action.payload) ? action.payload : '',
+                    };
+                }
+                return item;
             });
         }
         default: {
@@ -93,17 +105,17 @@ function TodosList({ items }) {
     return items.map(item => <TodoItem key={item.id} {...item} />)
 }
 
-function TodoItem({ id, completed, text }){
+function TodoItem({ id, completed, text, index }){
     const dispatch = useContext(Context);
     const [input, setInput] = useState('');
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
+        console.log({id});
         //Last character of text was not saved when I had payload: input, that is why I have it like is right now.
-        dispatch({ type: 'text', payload: e.target.value});
+        dispatch({ type: 'text', payload: {[e.target.name]: e.target.value}});
+        console.log(id);
     };
-
-    console.log({input})
 
     return (
         <div
@@ -117,7 +129,7 @@ function TodoItem({ id, completed, text }){
         >
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
     
-        <input type="text" name="value" placeholder="Type in Todo" defaultValue={text} onChange={handleInputChange} />
+        <input type="text" name={id} index={id} placeholder="Type in Todo" defaultValue={text} onChange={handleInputChange} />
         <button onClick={() => dispatch({ type: 'delete', payload: id })}>Delete</button>
         </div>
         );
