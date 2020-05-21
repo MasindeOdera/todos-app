@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useEffect, useRef, useState } from 'react';
 import '../App.css';
 
-function appReducer(state, action, todo) {
+function appReducer(state, action) {
     switch (action.type) {
         case 'clear': {
             return [];
@@ -69,13 +69,11 @@ function Todos() {
     //This is a custom hook to handle running useEffect once.
     useEffectOnce(() => {
         const raw = localStorage.getItem('data');
-        console.log("After getItem",state);
         dispatch({ type: 'reset', payload: JSON.parse(raw) });
     })
 
     useEffect(() => {
         localStorage.setItem('data', JSON.stringify(state));
-        console.log("After setItem",state);
     },
     [state]
     );
@@ -101,14 +99,10 @@ function TodoItem({ id, completed, text}){
     const [input, setInput] = useState('');
 
     const handleInputChange = (e) => {
-        setInput(e.target.value);
         //Last character of text was not saved when I had payload: input, that is why I have it like is right now.
-        // dispatch({ type: 'text', payload: {[e.target.name]: e.target.value}});
+        let input = e.target.value;
+        setInput(e.target.value);
         dispatch({ type: 'text', payload: {id, input}});
-        // dispatch({ type: 'text', payload: e.target.value });
-        // setTimeout(() => {
-        //     dispatch({ type: 'text', payload: {id, input}});
-        // }, 1000);
     };
 
     return (
@@ -124,7 +118,7 @@ function TodoItem({ id, completed, text}){
         >
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
     
-        <input type="text" name={id} index={id} placeholder="Type in Todo" defaultValue={text} onChange={handleInputChange} />
+        <input type="text" autoFocus name={id} index={id} placeholder="Type in Todo" defaultValue={text} onChange={handleInputChange} />
         <button onClick={() => dispatch({ type: 'delete', payload: id })}>Delete</button>
         </div>
         );
