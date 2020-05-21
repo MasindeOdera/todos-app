@@ -1,7 +1,7 @@
 import React, { useReducer, useContext, useEffect, useRef, useState } from 'react';
 import '../App.css';
 
-function appReducer(state, action, id) {
+function appReducer(state, action, todo) {
     switch (action.type) {
         case 'clear': {
             return [];
@@ -34,20 +34,11 @@ function appReducer(state, action, id) {
             });
         }
         case 'text': {
-            console.log(state);
-            console.log(action.payload);    
-            console.log(Object.getOwnPropertyNames(action.payload));
-            // return state.map(item => {
-            //     return {
-            //         ...item,
-            //         text: action.payload,
-            //     };
-            // });
-            return state.map((item) => {
-                if(item.id === Object.getOwnPropertyNames(action.payload)) {
+            return state.map(item => {
+                if(item.id === action.payload.id) {
                     return {
                         ...item,
-                        text: ( item.id in action.payload) ? action.payload : '',
+                        text: action.payload.input,
                     };
                 }
                 return item;
@@ -105,20 +96,24 @@ function TodosList({ items }) {
     return items.map(item => <TodoItem key={item.id} {...item} />)
 }
 
-function TodoItem({ id, completed, text, index }){
+function TodoItem({ id, completed, text}){
     const dispatch = useContext(Context);
     const [input, setInput] = useState('');
 
     const handleInputChange = (e) => {
         setInput(e.target.value);
-        console.log({id});
         //Last character of text was not saved when I had payload: input, that is why I have it like is right now.
-        dispatch({ type: 'text', payload: {[e.target.name]: e.target.value}});
-        console.log(id);
+        // dispatch({ type: 'text', payload: {[e.target.name]: e.target.value}});
+        dispatch({ type: 'text', payload: {id, input}});
+        // dispatch({ type: 'text', payload: e.target.value });
+        // setTimeout(() => {
+        //     dispatch({ type: 'text', payload: {id, input}});
+        // }, 1000);
     };
 
     return (
         <div
+            className={id}
             style={{
                 display: 'block',
                 flexDirection: 'row',
