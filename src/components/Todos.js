@@ -81,8 +81,8 @@ function Todos() {
     return (
         <Context.Provider value={dispatch}>
             <h1>Todos App</h1>
-            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>New Todo</button>
-            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Clear Todos</button>
+            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
+            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             <br />
             <br />
             <TodosList items={state} />
@@ -107,7 +107,7 @@ function TodoItem({ id, completed, text}){
 
     return (
         <div
-            className={id}
+            className="Todo"
             style={{
                 display: 'block',
                 flexDirection: 'row',
