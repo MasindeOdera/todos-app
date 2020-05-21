@@ -85,7 +85,9 @@ function Todos() {
             <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             <br />
             <br />
-            <TodosList items={state} />
+            <div className="Row">
+                <TodosList items={state} />
+            </div>
         </Context.Provider>
     )
 }
@@ -108,13 +110,13 @@ function TodoItem({ id, completed, text}){
     return (
         <div
             className="Todo"
-            style={{
-                display: 'block',
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                margin: '2px',
-                padding: '2px',
-            }}
+            // style={{
+            //     display: 'block',
+            //     flexDirection: 'row',
+            //     justifyContent: 'space-between',
+            //     margin: '2px',
+            //     padding: '2px',
+            // }}
         >
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
     

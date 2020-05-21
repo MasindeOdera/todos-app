@@ -10,6 +10,14 @@ body {
   color: white;
 }
 
+.Row{
+  /* background-color: #6b7790;
+  padding: 40px;
+  width: 300px;
+  display: block;
+  margin: auto; */
+}
+
 .Todo {
   animation: fade 1s ease forwards;
 }
