@@ -32,7 +32,7 @@ textarea {
 
 .Todo input[type=checkbox]
 {
-  /* Double-sized Checkboxes */
+  /* Enlarge the Checkboxes */
   -ms-transform: scale(1.2); /* IE */
   -moz-transform: scale(1.2); /* FF */
   -webkit-transform: scale(1.2); /* Safari and Chrome */
