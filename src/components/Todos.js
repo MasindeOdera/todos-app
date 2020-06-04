@@ -86,7 +86,7 @@ function Todos() {
                 <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             </header>
             <br />
-            <b>Number of items in your list: {state.length}</b>
+            <b>{state.length} { state.length === 1 ? "item in list." : "items in list." }</b>
             <div className="Container">
                 <TodosList items={state} />
             </div>
