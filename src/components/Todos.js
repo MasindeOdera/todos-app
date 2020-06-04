@@ -1,4 +1,4 @@
-import React, { useReducer, useContext, useEffect, useRef, useState } from 'react';
+import React, { useReducer, useEffect, useRef, useContext, useState } from 'react';
 import '../App.css';
 
 function appReducer(state, action) {
@@ -86,7 +86,7 @@ function Todos() {
                 <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             </header>
             <br />
-            <br />
+            <b>Number of items in your list: {state.length}</b>
             <div className="Container">
                 <TodosList items={state} />
             </div>
