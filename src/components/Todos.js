@@ -80,13 +80,13 @@ function Todos() {
 
     return (
         <Context.Provider value={dispatch}>
-            <h1>Todos App</h1>
+            <h1 style={{cursor: "default"}}>Todos App</h1>
             <header className="Options">
-                <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
-                <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
+                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
+                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             </header>
             <br />
-            <b>{state.length} { state.length === 1 ? "item in list." : "items in list." }</b>
+            <b style={{cursor: "default"}}>{state.length} { state.length === 1 ? "item in list." : "items in list." }</b>
             <div className="Container">
                 <TodosList items={state} />
             </div>

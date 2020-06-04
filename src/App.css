@@ -27,6 +27,7 @@ textarea {
 
 .Todo input, .fa {
   vertical-align: super;
+  cursor: pointer;
 }
 
 .Todo input[type=checkbox]
