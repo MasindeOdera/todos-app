@@ -81,11 +81,13 @@ function Todos() {
     return (
         <Context.Provider value={dispatch}>
             <h1>Todos App</h1>
-            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
-            <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
+            <header className="Options">
+                <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
+                <button style={{margin: "4px"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
+            </header>
             <br />
             <br />
-            <div className="Row">
+            <div className="Container">
                 <TodosList items={state} />
             </div>
         </Context.Provider>
@@ -108,20 +110,11 @@ function TodoItem({ id, completed, text}){
     };
 
     return (
-        <div
-            className="Todo"
-            // style={{
-            //     display: 'block',
-            //     flexDirection: 'row',
-            //     justifyContent: 'space-between',
-            //     margin: '2px',
-            //     padding: '2px',
-            // }}
-        >
+        <div className="Todo">
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
     
-        <input type="text" autoFocus name={id} index={id} placeholder="Type in Todo" defaultValue={text} onChange={handleInputChange} />
-        <button onClick={() => dispatch({ type: 'delete', payload: id })}>Delete</button>
+        <textarea type="text" autoFocus name={id} index={id} placeholder="Type in todo, task or shenanigan..." defaultValue={text} onChange={handleInputChange} />
+        <i className="fa fa-trash" aria-hidden="true" onClick={() => dispatch({ type: 'delete', payload: id })}></i>
         </div>
         );
 }

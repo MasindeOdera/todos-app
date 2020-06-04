@@ -10,17 +10,39 @@ body {
   color: white;
 }
 
-.Row{
-  /* background-color: #6b7790;
-  padding: 40px;
-  width: 300px;
-  display: block;
-  margin: auto; */
+textarea {
+  height: 40px;
+  width: 50%;
+  margin: 0px 8px;
 }
 
+/* .Container{
+  background-color: #6b7790;
+} */
+
 .Todo {
+  margin-top: 10px;
   animation: fade 1s ease forwards;
 }
+
+.Todo input, .fa {
+  vertical-align: super;
+}
+
+.Todo input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.4); /* IE */
+  -moz-transform: scale(1.4); /* FF */
+  -webkit-transform: scale(1.4); /* Safari and Chrome */
+  -o-transform: scale(1.4); /* Opera */
+  transform: scale(1.4);
+  padding: 10px;
+}
+
+header.Options {
+  text-align: center;
+} 
 
 @keyframes fade{
   from{
