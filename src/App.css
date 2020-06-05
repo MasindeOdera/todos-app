@@ -20,17 +20,17 @@ textarea {
   background-color: #6b7790;
 } */
 
-.Todo {
+.Task {
   margin-top: 10px;
   animation: fade 1s ease forwards;
 }
 
-.Todo input, .fa {
+.Task input, .fa {
   vertical-align: super;
   cursor: pointer;
 }
 
-.Todo input[type=checkbox]
+.Task input[type=checkbox]
 {
   /* Enlarge the Checkboxes */
   -ms-transform: scale(1.2); /* IE */

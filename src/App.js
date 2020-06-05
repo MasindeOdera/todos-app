@@ -1,11 +1,11 @@
 import React from 'react';
-import Todos from './components/Todos';
+import Tasks from './components/Tasks';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Todos />
+      <Tasks />
     </div>
   );
 }

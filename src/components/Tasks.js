@@ -11,7 +11,6 @@ function appReducer(state =[], action) {
         }
         case 'add': {
             return [
-                // ...state,
                 {
                     id: Date.now(),
                     text: '',
@@ -64,7 +63,7 @@ function useEffectOnce(cb) {
     });
 };
 
-function Todos() {
+function Tasks() {
     const [state, dispatch] = useReducer(appReducer, []);
 
     //This is a custom hook to handle running useEffect once.
@@ -84,25 +83,25 @@ function Todos() {
 
     return (
         <Context.Provider value={dispatch}>
-            <h1 style={{cursor: "default"}}>Todos App</h1>
+            <h1 style={{cursor: "default"}}>Task App</h1>
             <header className="Options">
-                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'add' })}>Create Todo</button>
-                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
+                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'add' })}>Create Task</button>
+                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete Every Task</button>
             </header>
             <br />
             { state && state.length >= 1 ? count : null }
             <div className="Container">
-                <TodosList items={state} />
+                <TasksList items={state} />
             </div>
         </Context.Provider>
     )
 }
 
-function TodosList({ items }) {
-    return items && items.map(item => <TodoItem key={item.id} {...item} />)
+function TasksList({ items }) {
+    return items && items.map(item => <TaskItem key={item.id} {...item} />)
 }
 
-function TodoItem({ id, completed, text}){
+function TaskItem({ id, completed, text}){
     const dispatch = useContext(Context);
     const [input, setInput] = useState('');
 
@@ -114,13 +113,13 @@ function TodoItem({ id, completed, text}){
     };
 
     return (
-        <div className="Todo">
+        <div className="Task">
         <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
     
-        <textarea type="text" autoFocus name={id} index={id} placeholder="Type in todo, task or shenanigan..." defaultValue={text} onChange={handleInputChange} />
+        <textarea type="text" autoFocus name={id} index={id} placeholder="Type in task, note or shenanigan..." defaultValue={text} onChange={handleInputChange} />
         <i className="fa fa-trash" aria-hidden="true" onClick={() => dispatch({ type: 'delete', payload: id })}></i>
         </div>
         );
 }
 
-export default Todos;
+export default Tasks;
