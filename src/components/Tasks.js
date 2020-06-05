@@ -114,10 +114,9 @@ function TaskItem({ id, completed, text}){
 
     return (
         <div className="Task">
-        <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
-    
-        <textarea type="text" autoFocus name={id} index={id} placeholder="Type in task, note, shopping list or shenanigan..." defaultValue={text} onChange={handleInputChange} />
-        <i className="fa fa-trash" aria-hidden="true" onClick={() => dispatch({ type: 'delete', payload: id })}></i>
+            <input type="checkbox" checked={completed} onChange={() => dispatch({ type: 'completed', payload: id })} />
+            <textarea type="text" autoFocus name={id} index={id} placeholder="Type in task, note, shopping list or shenanigan..." defaultValue={text} onChange={handleInputChange} />
+            <i className="fa fa-trash" aria-hidden="true" onClick={() => dispatch({ type: 'delete', payload: id })}></i>
         </div>
         );
 }
