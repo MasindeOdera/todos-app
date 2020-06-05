@@ -1,7 +1,7 @@
 import React, { useReducer, useEffect, useRef, useContext, useState } from 'react';
 import '../App.css';
 
-function appReducer(state, action) {
+function appReducer(state =[], action) {
     switch (action.type) {
         case 'clear': {
             return [];
@@ -11,12 +11,13 @@ function appReducer(state, action) {
         }
         case 'add': {
             return [
-                ...state,
+                // ...state,
                 {
                     id: Date.now(),
                     text: '',
                     completed: false,
                 },
+                ...state || [],
             ];
         }
         case 'delete': {
@@ -78,6 +79,9 @@ function Todos() {
     [state]
     );
 
+    // count displays the number of items in the list.
+    const count = <b style={{cursor: "default"}}>{state && state.length} {state && state.length === 1  ? "item in list." : "items in list." }</b>;
+
     return (
         <Context.Provider value={dispatch}>
             <h1 style={{cursor: "default"}}>Todos App</h1>
@@ -86,7 +90,7 @@ function Todos() {
                 <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete All Todos</button>
             </header>
             <br />
-            <b style={{cursor: "default"}}>{state.length} { state.length === 1 ? "item in list." : "items in list." }</b>
+            { state && state.length >= 1 ? count : null }
             <div className="Container">
                 <TodosList items={state} />
             </div>
@@ -95,7 +99,7 @@ function Todos() {
 }
 
 function TodosList({ items }) {
-    return items.map(item => <TodoItem key={item.id} {...item} />)
+    return items && items.map(item => <TodoItem key={item.id} {...item} />)
 }
 
 function TodoItem({ id, completed, text}){
