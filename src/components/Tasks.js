@@ -79,14 +79,14 @@ function Tasks() {
     );
 
     // count displays the number of items in the list.
-    const count = <b style={{cursor: "default"}}>{state && state.length} {state && state.length === 1  ? "item in list." : "items in list." }</b>;
+    const count = <b style={{cursor: "default"}}>{state && state.length} {state && state.length === 1  ? "task in list." : "tasks in list." }</b>;
 
     return (
         <Context.Provider value={dispatch}>
             <h1 style={{cursor: "default"}}>Task App</h1>
             <header className="Options">
                 <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'add' })}>Create Task</button>
-                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete Every Task</button>
+                <button style={{margin: "4px", cursor: "pointer"}} onClick={() => dispatch({ type: 'clear' })}>Delete List</button>
             </header>
             <br />
             { state && state.length >= 1 ? count : null }
