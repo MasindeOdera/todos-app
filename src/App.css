@@ -16,9 +16,9 @@ textarea {
   margin: 0px 8px;
 }
 
-/* .Container{
-  background-color: #6b7790;
-} */
+.Container{
+  margin-bottom: 20px;
+}
 
 .Task {
   margin-top: 10px;
